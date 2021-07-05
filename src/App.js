@@ -2,7 +2,6 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Home from './Routes/Home';
 import Starred from './Routes/Starred';
-import Header from './Components/Header';
 
 function App() {
   // const routes = [{
@@ -10,7 +9,6 @@ function App() {
   // }]
   return (
     <div>
-      <Header />
       <Switch>
         <Route path="/" exact>
           <Home />

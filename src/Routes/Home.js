@@ -1,8 +1,11 @@
 import React from 'react';
+import MainPageComponent from '../Components/MainPageComponent';
 
 const Home = () => (
   <div>
-    <h1>Home</h1>
+    <MainPageComponent>
+      <h1>Home</h1>
+    </MainPageComponent>
   </div>
 );
 
