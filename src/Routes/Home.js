@@ -5,6 +5,7 @@ import MainPageComponent from '../Components/MainPageComponent';
 
 const Home = () => {
   const [input, setInput] = useState('');
+  const [results , setResults] = useState(null)
   const onInputChange = e => {
     setInput(e.target.value);
   };
@@ -18,8 +19,25 @@ const Home = () => {
   const onSearch = () => {
     fetch(` http://api.tvmaze.com/search/shows?q=${input}`)
       .then(r => r.json())
-      .then(result => console.log(result));
+      .then(searchResults => {
+        setResults(searchResults);
+
+        console.log(searchResults);
+      }
+      );
   };
+
+  const showResults = () => {
+    if (results && results.length === 0) {
+      return <div>No Results</div>
+    }
+    else if (results && results.length > 0) {
+      return results.map((item) => <div key={item.show.id}>{item.show.name}</div>)
+    }
+    else {
+      return null
+    }
+  }
 
   return (
     <div>
@@ -33,7 +51,9 @@ const Home = () => {
         <button type="button" onClick={onSearch}>
           Search
         </button>
+        {showResults()}
       </MainPageComponent>
+
     </div>
   );
 };

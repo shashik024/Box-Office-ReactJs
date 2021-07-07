@@ -5,7 +5,7 @@ const Title = () => {
   return (
     <div>
       <h1>Box-Office</h1>
-      <p>Are you looking for a Movie or an Actor</p>
+      <p>Are you looking for a Movie or an Actor ?</p>
     </div>
   );
 };
