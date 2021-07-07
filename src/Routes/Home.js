@@ -6,8 +6,10 @@ import { GetApiResult } from '../Misc/Config';
 
 const Home = () => {
   const [input, setInput] = useState('');
+
   const [results, setResults] = useState(null);
   const [searchOption, setSerchOption] = useState('shows');
+
   const onInputChange = e => {
     setInput(e.target.value);
   };
@@ -19,13 +21,16 @@ const Home = () => {
   };
 
   const onSearch = () => {
+
     GetApiResult(`/search/${searchOption}?q=${input}`).then(searchResult =>
       setResults(searchResult)
     );
+
   };
 
   const showResults = () => {
     if (results && results.length === 0) {
+
       return <div>No Result Found !</div>;
     } else if (results && results.length > 0) {
       return results[0].show
@@ -81,8 +86,11 @@ const Home = () => {
         <button type="button" onClick={onSearch}>
           Search
         </button>
+        {showResults()}
       </MainPageComponent>
+
       {showResults()}
+
     </div>
   );
 };
