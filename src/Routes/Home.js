@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import ActorGrid from '../Components/Actor/ActorGrid';
 import MainPageComponent from '../Components/MainPageComponent';
+import { ShowGrid } from '../Components/Show/ShowGrid';
 import { GetApiResult } from '../Misc/Config';
 
 /* eslint-disable */
@@ -21,23 +23,20 @@ const Home = () => {
   };
 
   const onSearch = () => {
-
     GetApiResult(`/search/${searchOption}?q=${input}`).then(searchResult =>
       setResults(searchResult)
     );
-
   };
 
   const showResults = () => {
     if (results && results.length === 0) {
-
       return <div>No Result Found !</div>;
     } else if (results && results.length > 0) {
-      return results[0].show
-        ? results.map(item => <div key={item.show.id}>{item.show.name}</div>)
-        : results.map(item => (
-            <div key={item.person.id}>{item.person.name}</div>
-          ));
+      return results[0].show ? (
+        <ShowGrid data={results} />
+      ) : (
+        <ActorGrid data={results} />
+      );
     } else {
       return null;
     }
@@ -90,7 +89,6 @@ const Home = () => {
       </MainPageComponent>
 
       {showResults()}
-
     </div>
   );
 };

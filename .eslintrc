@@ -6,6 +6,8 @@
   },
   "parser": "babel-eslint",
   "rules": {
+    "react/self-closing-comp": [0],
+    "arrow-body-style": [0],
     "no-plusplus": [0],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/prop-types": [0],
