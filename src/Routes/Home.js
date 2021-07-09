@@ -48,8 +48,6 @@ const Home = () => {
 
   const searchButtonStatus = searchOption === 'shows';
 
-  console.log(searchOption);
-
   return (
     <div>
       <MainPageComponent>

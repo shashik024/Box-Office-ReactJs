@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Home from './Routes/Home';
+import Show from './Routes/Show';
 import Starred from './Routes/Starred';
 
 function App() {
@@ -15,6 +16,9 @@ function App() {
         </Route>
         <Route path="/starred">
           <Starred />
+        </Route>
+        <Route exact path="/show/:id">
+          <Show />
         </Route>
         <Route>
           <div>
