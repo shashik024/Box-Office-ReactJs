@@ -1,6 +1,11 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useEffect, useReducer } from 'react';
 import { useParams } from 'react-router-dom';
+import ShowMainData from '../Components/Show/ShowMainData';
+import Details from '../Components/Show/Details';
 import { GetApiResult } from '../Misc/Config';
+import Seasons from '../Components/Show/Seasons';
+import Cast from '../Components/Show/Cast';
 
 const Show = () => {
   let isMounted = true;
@@ -42,6 +47,8 @@ const Show = () => {
     initialState
   );
 
+  console.log('show', show);
+
   useEffect(() => {
     GetApiResult(`/shows/${id}?embed[]=seasons&embed[]=cast`)
       .then(results => {
@@ -51,11 +58,9 @@ const Show = () => {
       })
       .catch(err => {
         if (isMounted) {
-          dispatch({ type: 'FETCH_FAILED', show: err.message });
+          dispatch({ type: 'FETCH_FAILED', error: err.message });
         }
       });
-
-    console.log('show', show);
 
     return () => {
       isMounted = false;
@@ -72,7 +77,32 @@ const Show = () => {
 
   return (
     <div>
-      <h1>This is my show</h1>
+      <ShowMainData
+        image={show.image}
+        name={show.name}
+        summary={show.summary}
+        rating={show.rating}
+        tags={show.genres}
+      />
+
+      <div>
+        <h2>Details</h2>
+        <Details
+          status={show.status}
+          network={show.network}
+          premiered={show.premiered}
+        />
+      </div>
+
+      <div>
+        <h2>Seasons</h2>
+        <Seasons seasons={show._embedded.seasons} />
+      </div>
+
+      <div>
+        <h2>Cast</h2>
+        <Cast cast={show._embedded.cast} />
+      </div>
     </div>
   );
 };
