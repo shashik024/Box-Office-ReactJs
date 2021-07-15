@@ -3,11 +3,12 @@ import ActorGrid from '../Components/Actor/ActorGrid';
 import MainPageComponent from '../Components/MainPageComponent';
 import { ShowGrid } from '../Components/Show/ShowGrid';
 import { GetApiResult } from '../Misc/Config';
+import { UselastQuery } from '../Misc/CustomHooks';
 
 /* eslint-disable */
 
 const Home = () => {
-  const [input, setInput] = useState('');
+  const [input, setInput] = UselastQuery();
 
   const [results, setResults] = useState(null);
   const [searchOption, setSerchOption] = useState('shows');
