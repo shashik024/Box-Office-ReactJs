@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
 import ActorGrid from '../Components/Actor/ActorGrid';
+import CustomRadioBtn from '../Components/CustomRadioBtn';
+import {
+  RadioInputsWrapper,
+  SearchButtonWrapper,
+  SearchInput,
+} from '../Components/Home.styled';
 import MainPageComponent from '../Components/MainPageComponent';
 import { ShowGrid } from '../Components/Show/ShowGrid';
 import { GetApiResult } from '../Misc/Config';
@@ -52,38 +58,38 @@ const Home = () => {
   return (
     <div>
       <MainPageComponent>
-        <input
+        <SearchInput
           type="text"
           placeholder="Search Something here . . ."
           onChange={onInputChange}
           value={input}
           onKeyDown={onKeyDown}
         />
-        <div>
-          <label htmlFor="shows-search">
-            Shows
-            <input
-              type="radio"
+        <RadioInputsWrapper>
+          <div>
+            <CustomRadioBtn
+              label="Shows"
               id="shows-search"
               value="shows"
               checked={searchButtonStatus}
               onChange={onRadioButton}
             />
-          </label>
-          <label htmlFor="actor-search">
-            Actor
-            <input
-              type="radio"
+          </div>
+          <div>
+            <CustomRadioBtn
+              label="Actor"
               id="actor-search"
               value="people"
               checked={!searchButtonStatus}
               onChange={onRadioButton}
             />
-          </label>
-        </div>
-        <button type="button" onClick={onSearch}>
-          Search
-        </button>
+          </div>
+        </RadioInputsWrapper>
+        <SearchButtonWrapper>
+          <button type="button" onClick={onSearch}>
+            Search
+          </button>
+        </SearchButtonWrapper>
         {showResults()}
       </MainPageComponent>
 
