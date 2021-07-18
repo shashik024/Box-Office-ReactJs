@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styled from 'styled-components';
 
 // CustomRadio.js
@@ -64,4 +64,4 @@ const CustomRadioBtn = ({ label, ...restProps }) => {
   );
 };
 
-export default CustomRadioBtn;
+export default memo(CustomRadioBtn);

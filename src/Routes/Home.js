@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import ActorGrid from '../Components/Actor/ActorGrid';
 import CustomRadioBtn from '../Components/CustomRadioBtn';
 import {
@@ -9,7 +9,7 @@ import {
 import MainPageComponent from '../Components/MainPageComponent';
 import { ShowGrid } from '../Components/Show/ShowGrid';
 import { GetApiResult } from '../Misc/Config';
-import { UselastQuery } from '../Misc/CustomHooks';
+import { UselastQuery, useWhyDidYouUpdate } from '../Misc/CustomHooks';
 
 /* eslint-disable */
 
@@ -19,15 +19,15 @@ const Home = () => {
   const [results, setResults] = useState(null);
   const [searchOption, setSerchOption] = useState('shows');
 
-  const onInputChange = e => {
+  const onInputChange = useCallback(e => {
     setInput(e.target.value);
-  };
+  }, []);
 
-  const onKeyDown = e => {
+  const onKeyDown = useCallback(e => {
     if (e.keyCode === 13) {
       onSearch();
     }
-  };
+  }, []);
 
   const onSearch = () => {
     GetApiResult(`/search/${searchOption}?q=${input}`).then(searchResult =>
@@ -49,11 +49,13 @@ const Home = () => {
     }
   };
 
-  const onRadioButton = e => {
+  const onRadioButton = useCallback(e => {
     setSerchOption(e.target.value);
-  };
+  }, []);
 
   const searchButtonStatus = searchOption === 'shows';
+
+  useWhyDidYouUpdate('home', { onInputChange, onKeyDown });
 
   return (
     <div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { TitleWrapper } from './Title.styled';
 
 /*eslint-disable */
@@ -11,4 +11,6 @@ const Title = () => {
   );
 };
 
-export default Title;
+// memo function compare the previous props with current props if they are same , they will not be rerendered
+
+export default memo(Title);
